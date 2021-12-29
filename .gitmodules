@@ -1,0 +1,6 @@
+[submodule "third-part/tmk_keyboard"]
+	path = third-part/tmk_keyboard
+	url = https://github.com/tmk/tmk_keyboard.git
+[submodule "third-part/usb-host-shield"]
+	path = third-part/usb-host-shield
+	url = https://github.com/xzhong86/USB_Host_Shield_2.0.git
