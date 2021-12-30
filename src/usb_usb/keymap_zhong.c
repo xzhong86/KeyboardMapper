@@ -1,9 +1,9 @@
+
 /*
 Copyright 2018 BruceZh <xzhong86@??.com>
 */
 
 #include "keymap_zhong.h"
-#include "board.h"
 #include "led.h"
 
 #include "action_layer.h"  // for hook
