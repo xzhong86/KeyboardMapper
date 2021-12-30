@@ -5,6 +5,7 @@ add_library(hid_device
 
 # Make sure TinyUSB can find tusb_config.h
 target_include_directories(hid_device PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR})
+  ${CMAKE_CURRENT_LIST_DIR})
 
-target_link_libraries(hid_device PUBLIC pico_stdlib tinyusb_device tinyusb_board)
+target_link_libraries(hid_device PUBLIC
+  pico_stdlib tinyusb_device tinyusb_board tmk_core)
