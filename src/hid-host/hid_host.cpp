@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "pico/stdlib.h"
-//#include "bsp/board.h"
+#include "bsp/board.h"
 
 #include "Usb.h"
 #include "usbhub.h"
@@ -39,16 +39,16 @@ static void usbh_hid_init() {
 //#define delay(ms) busy_wait_us_32(ms * 1000)
 //#define millis()  to_ms_since_boot(get_absolute_time())
 
-static void board_led_init() {
-    gpio_init(25);
-    gpio_set_dir(25, 1);
-}
-static void board_led_write(int state) {
-    gpio_put(25, state ? 1 : 0);
-}
-static uint32_t board_millis() {
-    return to_ms_since_boot(get_absolute_time());
-}
+//static void board_led_init() {
+//    gpio_init(25);
+//    gpio_set_dir(25, 1);
+//}
+//static void board_led_write(int state) {
+//    gpio_put(25, state ? 1 : 0);
+//}
+//static uint32_t board_millis() {
+//    return to_ms_since_boot(get_absolute_time());
+//}
 
 static uint32_t blink_interval_ms = 250;
 static void led_blinking_task(void)
@@ -78,21 +78,19 @@ static void message_task()
     printf("message %d: %s\n", print_cnt, message_to_print);
 }
 
-int main() {
-    stdio_init_all();
-    //board_init();
-    board_led_init();
-
+void hid_host_init()
+{
+    printf("sleep 2s to init usb host\n");
     sleep_ms(2000);
     usbh_hid_init();
+}
 
-    while (true) {
-	led_blinking_task();
-	message_task();
+int hid_host_task() {
 
-	usb_host.Task();
-        sleep_ms(10);
-    }
+    led_blinking_task();
+    message_task();
+
+    usb_host.Task();
     return 0;
 }
 

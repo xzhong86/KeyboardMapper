@@ -67,22 +67,19 @@ static bool button_read(uint n) {
 void led_blinking_task(void);
 void hid_task(void);
 
-/*------------- MAIN -------------*/
-int main(void)
+void hid_device_init(void)
 {
-  board_init();
-  tusb_init();
-  button_init();
+    tusb_init();
+    button_init();
+}
 
-  while (1)
-  {
+int hid_device_task(void)
+{
     tud_task(); // tinyusb device task
-    led_blinking_task();
-
+    //led_blinking_task();
     hid_task();
-  }
 
-  return 0;
+    return 0;
 }
 
 //--------------------------------------------------------------------+
@@ -294,32 +291,14 @@ void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id, hid_report_type_
       {
         // Capslock On: disable blink, turn led on
         blink_interval_ms = 0;
-        board_led_write(true);
+        //board_led_write(true);
       }else
       {
         // Caplocks Off: back to normal blink
-        board_led_write(false);
+        //board_led_write(false);
         blink_interval_ms = BLINK_MOUNTED;
       }
     }
   }
 }
 
-//--------------------------------------------------------------------+
-// BLINKING TASK
-//--------------------------------------------------------------------+
-void led_blinking_task(void)
-{
-  static uint32_t start_ms = 0;
-  static bool led_state = false;
-
-  // blink is disabled
-  if (!blink_interval_ms) return;
-
-  // Blink every interval ms
-  if ( board_millis() - start_ms < blink_interval_ms) return; // not enough time
-  start_ms += blink_interval_ms;
-
-  board_led_write(led_state);
-  led_state = 1 - led_state; // toggle
-}
