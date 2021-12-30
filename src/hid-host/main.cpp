@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "bsp/board.h"
+//#include "bsp/board.h"
 
 #include "Usb.h"
 #include "usbhub.h"
@@ -34,6 +34,20 @@ static void usbh_hid_init() {
     kbd2.SetReportParser(0, (HIDReportParser*)&kbd_parser2);
     kbd3.SetReportParser(0, (HIDReportParser*)&kbd_parser3);
     kbd4.SetReportParser(0, (HIDReportParser*)&kbd_parser4);
+}
+
+//#define delay(ms) busy_wait_us_32(ms * 1000)
+//#define millis()  to_ms_since_boot(get_absolute_time())
+
+static void board_led_init() {
+    gpio_init(25);
+    gpio_set_dir(25, 1);
+}
+static void board_led_write(int state) {
+    gpio_put(25, state ? 1 : 0);
+}
+static uint32_t board_millis() {
+    return to_ms_since_boot(get_absolute_time());
 }
 
 static uint32_t blink_interval_ms = 250;
@@ -66,7 +80,8 @@ static void message_task()
 
 int main() {
     stdio_init_all();
-    board_init();
+    //board_init();
+    board_led_init();
 
     sleep_ms(2000);
     usbh_hid_init();

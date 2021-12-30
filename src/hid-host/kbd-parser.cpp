@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 
-//#define xprintf printf
-#define xprintf(args...) do { } while (0)
+#define xprintf printf
+//#define xprintf(args...) do { } while (0)
 
 void KBDReportParser::Parse(USBHID *hid, bool is_rpt_id, uint8_t len, uint8_t *buf)
 {

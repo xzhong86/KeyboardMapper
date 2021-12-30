@@ -8,13 +8,14 @@ set(srcs
 add_executable(${exename} ${srcs})
 
 target_link_libraries(${exename}
-  pico_stdlib tinyusb_board
+  pico_stdlib pico_stdio_usb
+  tinyusb_common_base tinyusb_board
   tmk_core usb_host_shield
   )
 
-# enable usb output, disable uart output
-pico_enable_stdio_usb(${exename} 1)
-pico_enable_stdio_uart(${exename} 0)
+
+pico_enable_stdio_usb(${exename} 0)
+pico_enable_stdio_uart(${exename} 1)
 
 # create map/bin/hex/uf2 file etc.
 pico_add_extra_outputs(${exename})
