@@ -3,7 +3,10 @@
 
 //#include "print.h"
 #include <stdio.h>
-#define xprintf printf
+#include <string.h>
+
+//#define xprintf printf
+#define xprintf(args...) do { } while (0)
 
 void KBDReportParser::Parse(USBHID *hid, bool is_rpt_id, uint8_t len, uint8_t *buf)
 {
@@ -23,7 +26,7 @@ void KBDReportParser::Parse(USBHID *hid, bool is_rpt_id, uint8_t len, uint8_t *b
        return;
     }
 
-    //::memcpy(&report, buf, sizeof(report_keyboard_t));
+    memcpy(&report, buf, sizeof(report_keyboard_t));
 
     time_stamp = millis();
 }

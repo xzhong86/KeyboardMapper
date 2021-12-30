@@ -1,7 +1,16 @@
 
-add_executable(${exename} main.cpp kbd-parser.cpp)
 
-target_link_libraries(${exename} pico_stdlib usb_host_shield tinyusb_board)
+set(srcs
+  hid-host/kbd-parser.cpp
+  hid-host/main.cpp
+  )
+
+add_executable(${exename} ${srcs})
+
+target_link_libraries(${exename}
+  pico_stdlib tinyusb_board
+  tmk_core usb_host_shield
+  )
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(${exename} 1)

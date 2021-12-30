@@ -39,3 +39,6 @@ add_library(tmk_core ${tmk_core_src})
 target_compile_options(tmk_core PRIVATE -include ${CMAKE_SOURCE_DIR}/src/config.h)
 
 target_link_libraries(tmk_core pico_tmk_api)
+
+target_include_directories(tmk_core PUBLIC ${common_dir})
+
