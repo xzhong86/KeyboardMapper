@@ -19,10 +19,7 @@ int main() {
     hid_device_init();
     //hid_host_init();
 
-    printf("usb_usb init...\n");
     usb_usb_init();
-
-    printf("init done.\n");
 
     while (1) {
 	hid_device_task();

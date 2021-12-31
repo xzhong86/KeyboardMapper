@@ -13,12 +13,12 @@ add_executable(${exename} ${srcs})
 
 target_link_libraries(${exename}
   hid_device usb_usb
-  pico_stdlib tinyusb_board
+  pico_stdlib
   tmk_core usb_host_shield
   )
 
 
-pico_enable_stdio_usb(${exename} 0)
+#pico_enable_stdio_usb(${exename} 0)
 pico_enable_stdio_uart(${exename} 1)
 
 # create map/bin/hex/uf2 file etc.
