@@ -117,6 +117,9 @@ static uint8_t keyboard_leds(void)
 static void send_keyboard(report_keyboard_t *report)
 {
     assert(KEYBOARD_REPORT_KEYS == 6);
+    printf("send_keyboard mods=%x keys=[%x %x %x %x %x %x]\n", report->mods,
+	   report->keys[0], report->keys[1], report->keys[2],
+	   report->keys[3], report->keys[4], report->keys[5]);
     tud_hid_keyboard_report(REPORT_ID_KEYBOARD, report->mods, report->keys);
 }
 static void send_mouse(report_mouse_t *report)

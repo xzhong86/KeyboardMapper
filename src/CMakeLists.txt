@@ -5,7 +5,7 @@ add_subdirectory(usb_usb)
 
 set(srcs
   hid-host/kbd-parser.cpp
-  hid-host/hid_host.cpp
+  #hid-host/hid_host.cpp
   main.cpp
   )
 
@@ -13,8 +13,7 @@ add_executable(${exename} ${srcs})
 
 target_link_libraries(${exename}
   hid_device usb_usb
-  pico_stdlib pico_stdio_usb
-  tinyusb_common_base tinyusb_board
+  pico_stdlib tinyusb_board
   tmk_core usb_host_shield
   )
 

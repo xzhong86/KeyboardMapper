@@ -8,6 +8,11 @@ Copyright 2018 BruceZh <xzhong86@??.com>
 #include "action_layer.h"  // for hook
 #include "action_util.h"  // for hook
 
+#define LED_CAPS_ON()   do { } while (0)
+#define LED_CAPS_OFF()  do { } while (0)
+#define LED_SPCFN_ON()  do { } while (0)
+#define LED_SPCFN_OFF() do { } while (0)
+
 /*<%
 load './gen-keymap.rb'
 k60 = Keymap.new("

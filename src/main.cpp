@@ -6,8 +6,8 @@
 extern "C" void hid_device_init(void);
 extern "C"  int hid_device_task(void);
 
-extern void hid_host_init(void);
-extern  int hid_host_task(void);
+//extern void hid_host_init(void);
+//extern  int hid_host_task(void);
 
 extern void usb_usb_init(void);
 extern  int usb_usb_task(void);
@@ -17,13 +17,16 @@ int main() {
     board_init();
 
     hid_device_init();
-    hid_host_init();
+    //hid_host_init();
 
+    printf("usb_usb init...\n");
     usb_usb_init();
+
+    printf("init done.\n");
 
     while (1) {
 	hid_device_task();
-	hid_host_task();
+	//hid_host_task();
 	usb_usb_task();
 	//sleep_ms(5);
     }

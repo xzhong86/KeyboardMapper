@@ -31,6 +31,7 @@ set(tmk_core_src
 	#${common_dir}/avr/xprintf.S
 	#${common_dir}/avr/timer.c
 	#${common_dir}/avr/bootloader.c
+	${common_dir}/keymap.c
 	)
 
 #file(GLOB tmk_core_src ${tmp_core_path}/common/*.c)
@@ -38,7 +39,7 @@ add_library(tmk_core ${tmk_core_src})
 
 target_compile_options(tmk_core PRIVATE -include ${CMAKE_SOURCE_DIR}/src/config.h)
 
-target_link_libraries(tmk_core pico_tmk_api)
+target_link_libraries(tmk_core pico_tmk_api usb_usb)
 
 target_include_directories(tmk_core PUBLIC ${common_dir})
 
